@@ -1,0 +1,12 @@
+{
+    "documentId": "AAPL",
+    "title": "Financial Summary for AAPL",
+    "metadataJson": "{\"ticker\": \"AAPL\", \"period\": \"1 month\", \"description\": \"A summary of financial performance for the ticker over the last month.\"}",
+    "section": [
+        {
+            "title": "Monthly Performance",
+            "text": "Last Close: 188.85000610351562\nMonthly High: 196.12972989673594\nMonthly Low: 179.0215641124459",
+            "metadataJson": "{\"last_close\": 188.85000610351562, \"monthly_high\": 196.12972989673594, \"monthly_low\": 179.0215641124459}"
+        }
+    ]
+}
