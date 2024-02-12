@@ -1,0 +1,71 @@
+{% extends "soozhub_app/layout.html" %}
+
+{% block body %}
+
+<div class="container-fluid m-4">
+    <h3>Input Form</h3>
+    <div class="row d-flex justify-center "style="display:flex;justify-content:center;align-items:center;">
+        <div class="col-md-6">
+            <form method="post" action="{% url 'form_view' %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="stock_symbol">Select Stock Symbol:</label><br>
+                    <select id="stock_symbol" class="form-select" aria-label="Default select example" name="stock_symbol">
+                        <option value="MSFT" selected>Microsoft (MSFT)</option>
+                        <option value="AAPL">Apple (AAPL)</option>
+                        <!-- Add more options for other symbols -->
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="timeframe">Select Timeframe:</label><br>
+                    <select id="timeframe" name="timeframe" class="form-select" aria-label="Default select example">
+                        <option value="1_month" selected>1 Month</option>
+                        <option value="3_months">3 Months</option>
+                        <option value="6_months">6 Months</option>
+                        <option value="1_year">1 Year</option>
+                        <option value="2_years">2 Years</option>
+                        <option value="5_years">5 Years</option>
+                        <option value="10_years">10 Years</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container col-md-6 m-4">
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
