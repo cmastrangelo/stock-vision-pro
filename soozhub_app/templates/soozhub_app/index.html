@@ -1,86 +1,17 @@
 {% extends "soozhub_app/layout.html" %}
 
 {% block body %}
+{% load static %}
 
 <div class="container-fluid m-4">
-    <h3>Input Form</h3>
     <div class="row d-flex justify-content-center align-items-center">
-        <div class="col-md-6">
-            <container class="container">
+      <container class="container">
         <div class="logo">
-            <img src="Finicial_logo2.jpeg" alt="" >
+            <img src="{% static 'Logoupdated.png' %}" alt="" >
         </div>
-        <form action="" class="form" style="display: flex; flex-direction: column; align-items: center;">
-            <label for="" class="label" style="align-self: flex-start;">Select Stock Symbol:</label> <br>
-            <select name="" class="select">
-                <option value="" class="option">Microsoft (MSFT)</option>
-            </select><br>
-            <button type="submit" class="button">Submit </button>
-        </form>
-        <css>
-            #logo{
-    width: 150px;
-    position: relative;
-    left: -50px;
-    bottom: 50px;
-}
-
-.form{
-    justify-items: center;
-    align-items: center;
-    margin: auto;
-    max-width: 500px;
-    /* margin-top: 100px; */
-}
-select{
-    margin-top: 10px;
-    margin-bottom: 30px;
-    width: 100%;
-    padding: 10px 5px ;
-    font-size: 15px;
-    border: 1px solid black;
-}
-
-.button{
-    width: 90px;
-    height: 30px;
-    font-size: 18px;
-    background-color: rgb(109, 109, 214);
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    color: white;
-}
-
-
-table{
-    margin-top: 30px;
-    width: 100%;
-}
-
-tr{
-    border-bottom: 1px solid grey;
-}
-
-#mark{
-  position: relative;
-  left: 102px;
-}
-
-.logo{
-    /* border: 1px solid black; */
-    width: 100%;
-    display: flex;
-    /* align-items: center; */
-    justify-content: center;
-    vertical-align: center;
-    height: 200px;
-}
-        </css>
-
-    </container>
-            <form method="post" action="{% url 'form_view' %}">
-            <form id="stockForm" method="post">
+      </container>
+        <div class="col-md-6">
+            <form method="post" action="{% url 'submit_view' %}">
                 {% csrf_token %}
                 <div class="mb-3">
                     <label for="stock_symbol">Enter Stock Symbol:</label><br>
@@ -88,16 +19,16 @@ tr{
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-            <!-- Directly after the form, ensure these are within the same column -->
-            <div id="loading" style="display: none;">
-                <div class="spinner"></div>
-            </div>
+                <!-- Directly after the form, ensure these are within the same column -->
+                <div id="loading" style="display: none;">
+                    <div class="spinner"></div>
+                </div>
 
-            <!-- Container where the AJAX response will be displayed -->
-            <div id="response-container" class="mt-4">
-                <!-- Dynamic content goes here after form submission -->
-            </div>
+                <!-- Container where the AJAX response will be displayed -->
+                <div id="response-container" class="mt-4">
+                    <!-- Dynamic content goes here after form submission -->
+                </div>
+            </form>
         </div>
     </div>
 </div>
