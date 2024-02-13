@@ -6,7 +6,7 @@
       "config": {
         "maxLambdaSize": "15mb",
         "runtime": "python3.11",
-        "buildCommand": "python manage.py collectstatic --noinput"
+        "buildCommand": "py manage.py collectstatic"
       }
     }
   ],
