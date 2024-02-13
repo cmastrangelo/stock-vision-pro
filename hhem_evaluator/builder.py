@@ -1,5 +1,5 @@
 from gpt_4_turbo_handler import GPT4Turbo
-from gemini_integration import Gemini
+from gemini_handler import Gemini
 from yfinance_query import download_yfinance_data, analyse_data
 import time
 

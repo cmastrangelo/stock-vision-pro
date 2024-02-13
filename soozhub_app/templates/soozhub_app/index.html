@@ -6,7 +6,7 @@
     <h3>Input Form</h3>
     <div class="row d-flex justify-center "style="display:flex;justify-content:center;align-items:center;">
         <div class="col-md-6">
-            <form method="post" action="{% url 'form_view' %}">
+            <form id="stockForm" method="post">
                 {% csrf_token %}
                 <div class="mb-3">
                     <label for="stock_symbol">Select Stock Symbol:</label><br>
@@ -17,55 +17,43 @@
                     </select>
                 </div>
 
-                <div class="mb-3">
-                    <label for="timeframe">Select Timeframe:</label><br>
-                    <select id="timeframe" name="timeframe" class="form-select" aria-label="Default select example">
-                        <option value="1_month" selected>1 Month</option>
-                        <option value="3_months">3 Months</option>
-                        <option value="6_months">6 Months</option>
-                        <option value="1_year">1 Year</option>
-                        <option value="2_years">2 Years</option>
-                        <option value="5_years">5 Years</option>
-                        <option value="10_years">10 Years</option>
-                    </select>
-                </div>
-
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>
 </div>
-<div class="container col-md-6 m-4">
 
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
-      </tr>
-    </tbody>
-  </table>
+<!-- Container where the AJAX response will be displayed -->
+<div class="container col-md-6 m-4" id="response-container">
+    <!-- Dynamic content goes here after form submission -->
 </div>
 
 {% endblock %}
+
+<!-- Include jQuery for AJAX (if not already included) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    console.log("Hello from index.html");
+$(document).ready(function() {
+    $('#stockForm').submit(function(event) {
+        event.preventDefault(); // Prevent the default form submission
+        $.ajax({
+            type: 'POST',
+            url: '{% url "submit_view" %}', // Ensure this URL is correctly pointed to your AJAX view
+            data: {
+                stock_symbol: $('#stock_symbol').val(),
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function(response) {
+                // Insert the response into the 'response-container'
+                $('#response-container').html(response.markup);
+            },
+            error: function(xhr, errmsg, err) {
+                // Handle errors
+                console.log("Error: " + errmsg);
+            }
+        });
+    });
+});
+</script>
