@@ -1,43 +1,36 @@
 {% extends "soozhub_app/layout.html" %}
 
 {% block body %}
+{% load static %}
 
-<div class="container-fluid ">
-  <div class="row d-flex justify-center "style="display:flex;justify-content:center;align-items:center;">
-    <div class="col-md-6">
+<div class="container-fluid m-4">
+    <div class="row d-flex justify-content-center align-items-center">
       <container class="container">
-  <div class="logo">
-      <img src="{% static 'Logoupdated.png' %}" alt="" >
-  </div>
-  <form method="post" action="{% url 'form_view' %}"style="display:flex;flex-direction:column;">
-      <label for="" class="label" style="align-self: flex-start;">Select Stock Symbol:</label> <br>
-      <select id="stock_symbol" class="form-select" aria-label="Default select example" name="stock_symbol" class="select">
-          <option value="" class="option">Microsoft (MSFT)</option>
-      </select><br>
-      <div class="mb-3">
-        <button type="submit" class="btn btn-primary"style="width:25%;">Submit</button>
-      </div>  </form>
+        <div class="logo">
+            <img src="{% static 'Logoupdated.png' %}" alt="" >
+        </div>
+      </container>
+        <div class="col-md-6">
+            <form id="stockForm" method="post" action="{% url 'submit_view' %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="stock_symbol">Enter Stock Symbol:</label><br>
+                    <input type="text" id="stock_symbol" class="form-control" name="stock_symbol" placeholder="e.g., MSFT" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <!-- Directly after the form, ensure these are within the same column -->
+                <div id="loading" style="display: none;">
+                    <div class="spinner"></div>
+                </div>
+
+                <!-- Container where the AJAX response will be displayed -->
+                <div id="response-container" class="mt-4">
+                    <!-- Dynamic content goes here after form submission -->
+                </div>
+            </form>
         </div>
     </div>
-</div>
-<table class="table container col-md-6 m-4">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-    </tbody>
-  </table>
 </div>
 
 {% endblock %}

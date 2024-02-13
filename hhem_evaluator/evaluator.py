@@ -1,7 +1,7 @@
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
 import numpy as np
-from gemini_integration import Gemini
+from gemini_handler import Gemini
 from gpt_4_turbo_handler import GPT4Turbo
 from yfinance_query import download_yfinance_data, analyse_data
 import json
