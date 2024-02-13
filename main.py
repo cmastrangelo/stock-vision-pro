@@ -1,50 +1,71 @@
 import yfinance as yf
-from datetime import datetime, timedelta
+import pandas as pd
 
-# Define the ticker symbol
-ticker = "AAPL"
 
-# Fetch data for the last year
-end_date = datetime.today()
-start_date = end_date - timedelta(days=365)
+def download_yfinance_data(symbol):
+    print('downloading data for', symbol)
+    # Download the stock data since its inception (no start date specified)
+    market_data = yf.download(symbol)
 
-# Download the stock data
-data = yf.download(ticker, start=start_date, end=end_date)
+    # Fetch additional info (as before)
+    ticker_info = yf.Ticker(symbol)
+    sector = ticker_info.info.get('sector', 'N/A')
+    industry = ticker_info.info.get('industry', 'N/A')
+    dividend_yield = round(ticker_info.info.get('dividendYield', 0) * 100, 2)
+    pe_ratio = round(ticker_info.info.get('trailingPE', 0), 2)
+    eps = round(ticker_info.info.get('trailingEps', 0), 2)
+    market_cap = round(ticker_info.info.get('marketCap', 0), 2)
+    beta = round(ticker_info.info.get('beta', 0), 2)
 
-# Calculate additional metrics with rounding
-last_close = round(data['Close'].iloc[-1], 2)
-annual_high = round(data['High'].max(), 2)
-annual_low = round(data['Low'].min(), 2)
-average_volume = round(data['Volume'].mean(), 2)
-most_recent_price = round(data['Close'].iloc[-1], 2)
-most_recent_volume = round(data['Volume'].iloc[-1], 2)
+    data = {
+        'sector': sector,
+        'industry': industry,
+        'market_data': market_data,
+        'dividend_yield': dividend_yield,
+        'pe_ratio': pe_ratio,
+        'eps': eps,
+        'market_cap': market_cap,
+        'beta': beta
+    }
+    return data
 
-# Fetch additional info
-ticker_info = yf.Ticker(ticker)
-# Make sure to check if these keys exist and have non-null values before accessing them
-dividend_yield = round(ticker_info.info.get('dividendYield', 0) * 100, 2)  # Assuming it's provided as a fraction, convert to percentage
-pe_ratio = round(ticker_info.info.get('trailingPE', 0), 2)
-eps = round(ticker_info.info.get('trailingEps', 0), 2)
-market_cap = round(ticker_info.info.get('marketCap', 0), 2)
-beta = round(ticker_info.info.get('beta', 0), 2)
 
-# Prepare the enhanced financial summary with rounded values
-summary_text = f"""Enhanced Financial Summary for {ticker}
-Ticker: {ticker}
-Last Close: {last_close}
-Annual High: {annual_high}
-Annual Low: {annual_low}
-Average Volume: {average_volume}
-Most Recent Price: {most_recent_price}
-Most Recent Volume: {most_recent_volume}
-Dividend Yield: {dividend_yield}%
-P/E Ratio: {pe_ratio}
-EPS: {eps}
-Market Cap: {market_cap}
-Beta: {beta}
-"""
+def analyse_data(data, symbol):
+    # Calculate additional metrics with rounding
+    all_time_high = round(data['market_data']['High'].max(), 2)
+    all_time_low = round(data['market_data']['Low'].min(), 2)
 
-# Save the summary to a .txt file
-file_path_txt = 'enhanced_financial_summary_aapl.txt'
-with open(file_path_txt, 'w') as txt_file:
-    txt_file.write(summary_text)
+    # For year high and year low, filter data for the last year
+    end_date = data['market_data'].index.max()  # Use the last available date in the dataset
+    start_date = end_date - pd.Timedelta(days=365)
+    last_year_data = data['market_data'].loc[start_date:end_date]
+
+    year_high = round(last_year_data['High'].max(), 2)
+    year_low = round(last_year_data['Low'].min(), 2)
+
+    # Continue with previous calculations for most recent metrics
+    last_close = round(data['market_data']['Close'].iloc[-1], 2)
+    average_volume = round(data['market_data']['Volume'].mean(), 2)
+    most_recent_price = round(data['market_data']['Close'].iloc[-1], 2)
+    most_recent_volume = round(data['market_data']['Volume'].iloc[-1], 2)
+
+    # Update the summary to include all-time and last year metrics
+    summary_text = f"""Financial Summary for {symbol}
+    Ticker: {symbol}
+    Sector: {data['sector']}
+    Industry: {data['industry']}
+    Last Close: {last_close}
+    All-Time High: {all_time_high}
+    All-Time Low: {all_time_low}
+    Year High (Last 365 Days): {year_high}
+    Year Low (Last 365 Days): {year_low}
+    Average Volume: {average_volume}
+    Most Recent Price: {most_recent_price}
+    Most Recent Volume: {most_recent_volume}
+    Dividend Yield: {data['dividend_yield']}%
+    P/E Ratio: {data['pe_ratio']}
+    EPS: {data['eps']}
+    Market Cap: {data['market_cap']}
+    Beta: {data['beta']}
+    """
+    return summary_text
