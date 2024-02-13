@@ -6,6 +6,20 @@
     <h3>Input Form</h3>
     <div class="row d-flex justify-center "style="display:flex;justify-content:center;align-items:center;">
         <div class="col-md-6">
+            <container class="container">
+        <div class="logo">
+            <img src="Finicial_logo2.jpeg" alt="" >
+        </div>
+        <form action="" class="form" style="display: flex; flex-direction: column; align-items: center;">
+            <label for="" class="label" style="align-self: flex-start;">Select Stock Symbol:</label> <br>
+            <select name="" class="select">
+                <option value="" class="option">Microsoft (MSFT)</option>
+            </select><br>
+            <button type="submit" class="button">Submit </button>
+        </form>
+        
+        
+    </container>
             <form method="post" action="{% url 'form_view' %}">
                 {% csrf_token %}
                 <div class="mb-3">
