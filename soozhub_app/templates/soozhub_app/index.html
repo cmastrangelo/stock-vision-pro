@@ -2,115 +2,25 @@
 
 {% block body %}
 
-<div class="container-fluid m-4">
-    <h3>Input Form</h3>
-    <div class="row d-flex justify-center "style="display:flex;justify-content:center;align-items:center;">
-        <div class="col-md-6">
-            <container class="container">
-        <div class="logo">
-            <img src="Finicial_logo2.jpeg" alt="" >
-        </div>
-        <form action="" class="form" style="display: flex; flex-direction: column; align-items: center;">
-            <label for="" class="label" style="align-self: flex-start;">Select Stock Symbol:</label> <br>
-            <select name="" class="select">
-                <option value="" class="option">Microsoft (MSFT)</option>
-            </select><br>
-            <button type="submit" class="button">Submit </button>
-        </form>
-        <css>
-            #logo{
-    width: 150px;
-    position: relative;
-    left: -50px;
-    bottom: 50px;
-}
-
-.form{
-    justify-items: center;
-    align-items: center;
-    margin: auto;
-    max-width: 500px;
-    /* margin-top: 100px; */
-}
-select{
-    margin-top: 10px;
-    margin-bottom: 30px;
-    width: 100%;
-    padding: 10px 5px ;
-    font-size: 15px;
-    border: 1px solid black;
-}
-
-.button{
-    width: 90px;
-    height: 30px;
-    font-size: 18px;
-    background-color: rgb(109, 109, 214);
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    color: white;
-}
-
-
-table{
-    margin-top: 30px;
-    width: 100%;
-}
-
-tr{
-    border-bottom: 1px solid grey;
-}
-
-#mark{
-  position: relative;
-  left: 102px;
-}
-
-.logo{
-    /* border: 1px solid black; */
-    width: 100%;
-    display: flex;
-    /* align-items: center; */
-    justify-content: center;
-    vertical-align: center;
-    height: 200px;
-}
-        </css>
-        
-    </container>
-            <form method="post" action="{% url 'form_view' %}">
-                {% csrf_token %}
-                <div class="mb-3">
-                    <label for="stock_symbol">Select Stock Symbol:</label><br>
-                    <select id="stock_symbol" class="form-select" aria-label="Default select example" name="stock_symbol">
-                        <option value="MSFT" selected>Microsoft (MSFT)</option>
-                        <option value="AAPL">Apple (AAPL)</option>
-                        <!-- Add more options for other symbols -->
-                    </select>
-                </div>
-
-                <div class="mb-3">
-                    <label for="timeframe">Select Timeframe:</label><br>
-                    <select id="timeframe" name="timeframe" class="form-select" aria-label="Default select example">
-                        <option value="1_month" selected>1 Month</option>
-                        <option value="3_months">3 Months</option>
-                        <option value="6_months">6 Months</option>
-                        <option value="1_year">1 Year</option>
-                        <option value="2_years">2 Years</option>
-                        <option value="5_years">5 Years</option>
-                        <option value="10_years">10 Years</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+<div class="container-fluid ">
+  <div class="row d-flex justify-center "style="display:flex;justify-content:center;align-items:center;">
+    <div class="col-md-6">
+      <container class="container">
+  <div class="logo">
+      <img src="Finicial_logo2.jpeg" alt="" >
+  </div>
+  <form method="post" action="{% url 'form_view' %}"style="display:flex;flex-direction:column;">
+      <label for="" class="label" style="align-self: flex-start;">Select Stock Symbol:</label> <br>
+      <select id="stock_symbol" class="form-select" aria-label="Default select example" name="stock_symbol" class="select">
+          <option value="" class="option">Microsoft (MSFT)</option>
+      </select><br>
+      <div class="mb-3">
+        <button type="submit" class="btn btn-primary"style="width:25%;">Submit</button>
+      </div>  </form>
         </div>
     </div>
 </div>
-<div class="container col-md-6 m-4">
-
-<table class="table">
+<table class="table container col-md-6 m-4">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -125,17 +35,6 @@ tr{
         <td>Mark</td>
         <td>Otto</td>
         <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
       </tr>
     </tbody>
   </table>
