@@ -1,1 +1,0 @@
-" Your response should be in json format. Response should contain the following fields: 'summary':, 'positives_aspects': [(list of positive aspects for stock)], 'negative_aspects': [(list of positive aspects for stock)], competitors: [(major players in sector/industry)]"
