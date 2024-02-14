@@ -9,7 +9,7 @@ def download_yfinance_data(symbol):
     print(2)
     # Calculate dates for the last month
     end_date = datetime.now()
-    start_date = end_date - timedelta(days=30)
+    start_date = end_date - timedelta(days=2)
 
     # Download the stock market data
     market_data = yf.download(symbol, start=start_date, end=end_date)
