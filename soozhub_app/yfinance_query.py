@@ -4,7 +4,10 @@ import pandas as pd
 
 def download_yfinance_data(symbol):
     # Download the stock data since its inception (no start date specified)
+    print(1)
+    print(2)
     market_data = yf.download(symbol)
+    print(3)
 
     # Fetch additional info (as before)
     ticker_info = yf.Ticker(symbol)
