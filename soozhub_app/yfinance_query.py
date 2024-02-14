@@ -3,7 +3,6 @@ import pandas as pd
 
 
 def download_yfinance_data(symbol):
-    print('downloading data for', symbol)
     # Download the stock data since its inception (no start date specified)
     market_data = yf.download(symbol)
 
