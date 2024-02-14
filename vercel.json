@@ -1,19 +1,15 @@
 {
-  "builds": [
-    {
-      "src": "soozhub/wsgi.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "15mb",
-        "runtime": "python3.11",
-        "distDir": "staticfiles_build"
-      }
-    }
-  ],
-  "routes": [
-      {
-      "src": "/(.*)",
-      "dest": "soozhub/wsgi.py"
-      }
-  ]
+  "version": 2,
+  "builds": [{
+    "src": "soozhub/wsgi.py",
+    "use": "@vercel/python"
+  }],
+  "routes": [{
+    "src": "/static/(.*)",
+    "headers": { "cache-control": "s-maxage=31536000,immutable" },
+    "dest": "/static/$1"
+  }, {
+    "src": "/(.*)",
+    "dest": "soozhub/wsgi.py"
+  }]
 }
