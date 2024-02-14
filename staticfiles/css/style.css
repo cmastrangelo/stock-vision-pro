@@ -1,0 +1,101 @@
+/* Apply these styles to the body or a parent container that wraps both the spinner and the response container */
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* This makes sure that the container takes up at least the height of the viewport */
+    flex-direction: column; /* Stack them vertically */
+}
+
+/* Spinner styling for centering */
+#loading {
+    justify-content: center;
+    align-items: center;
+    display: flex; /* This will be visible only when loading is shown */
+}
+
+/* Ensure the response container is also centered, if needed */
+#response-container {
+    text-align: left;
+    width: 100%; /* Adjust the width as necessary */
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top: 4px solid #3498db;
+    width: 40px;
+    height: 40px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+            #logo{
+    width: 150px;
+    position: relative;
+    left: -50px;
+    bottom: 50px;
+}
+
+.form{
+    justify-items: center;
+    align-items: center;
+    margin: auto;
+    max-width: 500px;
+    /* margin-top: 100px; */
+}
+select{
+    margin-top: 10px;
+    margin-bottom: 30px;
+    width: 100%;
+    padding: 10px 5px ;
+    font-size: 15px;
+    border: 1px solid black;
+}
+
+.button{
+    width: 90px;
+    height: 30px;
+    font-size: 18px;
+    background-color: rgb(109, 109, 214);
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    color: white;
+}
+
+
+table{
+    margin-top: 30px;
+    width: 100%;
+}
+
+tr{
+    border-bottom: 1px solid grey;
+}
+
+#mark{
+  position: relative;
+  left: 102px;
+}
+
+.logo{
+    /* border: 1px solid black; */
+    width: 100%;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    vertical-align: center;
+    height: 200px;
+}
