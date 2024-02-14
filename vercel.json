@@ -2,9 +2,10 @@
   "version": 2,
   "builds": [{
     "src": "soozhub/wsgi.py",
-    "use": "@vercel/python"
+    "use": "@vercel/python",
+    "config": { "buildCommand": "pip install -r requirements.txt && python manage.py collectstatic --noinput" }
   }],
-  "routes": [{
+  "routes": [ {
     "src": "/static/(.*)",
     "headers": { "cache-control": "s-maxage=31536000,immutable" },
     "dest": "/static/$1"
