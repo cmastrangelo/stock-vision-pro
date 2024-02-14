@@ -3,7 +3,9 @@
   "builds": [{
     "src": "soozhub/wsgi.py",
     "use": "@vercel/python",
-    "config": { "buildCommand": "pip install -r requirements.txt && python manage.py collectstatic --noinput" }
+    "config": {
+      "buildCommand": "python manage.py collectstatic --noinput"
+    }
   }],
   "routes": [ {
     "src": "/static/(.*)",
