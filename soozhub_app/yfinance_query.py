@@ -1,12 +1,18 @@
 import yfinance as yf
 import pandas as pd
+from datetime import datetime, timedelta
 
 
 def download_yfinance_data(symbol):
     # Download the stock data since its inception (no start date specified)
     print(1)
     print(2)
-    market_data = yf.download(symbol)
+    # Calculate dates for the last month
+    end_date = datetime.now()
+    start_date = end_date - timedelta(days=30)
+
+    # Download the stock market data
+    market_data = yf.download(symbol, start=start_date, end=end_date)
     print(3)
 
     # Fetch additional info (as before)
